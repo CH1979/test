@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Компьютерная графика и web-программирование</title>
+
+  <link rel="stylesheet" href="css/element.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+  <script src="js/element.js"></script>
+</head>
+<body>
+  <div id="app">
+    
+    <el-container>
+	    <el-header height="75px">
+	        <h1>Компьютерная графика и web-программирование</h1>
+		</el-header>
+	</el-container>
+
+	<el-container>
+		<el-aside>
+	        <el-menu
+			    default-active="/main"
+			    class="el-menu-vertical-demo"
+			    v-bind:router="true">
+		          <el-menu-item index="/main" route="router">Главная</el-menu-item>
+		          <el-submenu index="2">
+		            <template slot="title">Темы занятий</template>
+		            <el-menu-item index="2-1">PhotoShop</el-menu-item>
+		            <el-menu-item index="2-2">HTML</el-menu-item>
+		            <el-menu-item index="2-3">CSS</el-menu-item>
+		            <el-menu-item index="2-4">JavaScript</el-menu-item>
+		          </el-submenu>
+		          <el-menu-item index="3">Работы</el-menu-item>
+		          <el-menu-item index="/contacts" route="router">Контакты</el-menu-item>
+	        </el-menu>
+	    </el-aside>
+		<el-row>
+		    <el-col  :span="24">
+		    	<router-view></router-view>
+		    </el-col>
+		</el-row>
+
+	</el-container>
+      
+  </div>
+
+  <script>
+	const Main = { template: '<h1>Главная</h1>' }
+	const Contacts = { template: '<h1>Контакты</h1>' }
+
+	const router = new VueRouter({
+		routes: [
+		  { path: '/contacts', component: Contacts },
+		  { path: '/main', component: Main }
+	]
+	})
+
+	const app = new Vue({
+		router: router,
+		el: '#app',
+	})
+  </script>
+
+</body>
+</html>
